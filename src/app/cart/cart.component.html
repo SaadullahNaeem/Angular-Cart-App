@@ -1,0 +1,42 @@
+<div *ngIf="show; else AddFirst" class="container">
+    <div class="row">
+        <div class="col-md-5" style="border-right: 2px solid; ">
+          <h2 style="text-align: center;">Products</h2>
+            <table class="table table-hover">
+                <tbody>
+                    <tr *ngFor="let prod of products ; let ind=index">
+                        <td>{{prod.name | uppercase}}</td>
+                        <td>{{prod.price | currency}}</td>
+                        <td>
+                            <a class="btn btn-info" role="button" (click)="add(prod)">Add</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-md-7" style="border-left: 2px solid; ">
+
+          <h2 style="text-align: center; ">Shopping Cart</h2>
+          <table class="table table-hover ">
+                <tbody>
+                    <tr *ngFor="let prod of cart ; let ind=index">
+                        <td>{{prod.name | uppercase}}</td>
+                        <td>{{prod.quantity | number}}</td>
+                        <td>{{prod.price | currency}}</td>
+                        <td>
+                            <a class="btn btn-warning" role="button" (click)="remove(ind)">X</a>
+                        </td>
+                    </tr>
+                </tbody>
+          </table>
+          <hr>
+          <h4 style="text-align: center;">Total : {{total | currency}}</h4>
+        </div>
+    </div>
+</div>
+<ng-template #AddFirst>
+  <div class="alert alert-success" role="alert">
+  <h4 class="alert-heading">I think you should add some products before adding them to cart, Thanks &#9786;</h4>
+ </div>
+</ng-template>
